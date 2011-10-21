@@ -3,19 +3,19 @@ require File.join(File.dirname(__FILE__), '../../lib/astar/graph')
 describe Graph do
   before do
     # BUILD THE GRAPH FROM THE LECTURE
-    @arad = Node.new(366)
-    @zerind = Node.new(374)
-    @sibiu = Node.new(253)
-    @timisoara = Node.new(329)
-    @oradea = Node.new(380)
-    @fagaras = Node.new(176)
-    @lugoj = Node.new(244)
-    @mehadia = Node.new(241)
-    @drobeta = Node.new(242)
-    @craiova = Node.new(160)
-    @rimnicu_vilcea = Node.new(193)
-    @pitesti = Node.new(100)
-    @bucharest = Node.new(0)
+    @arad = Node.new("Arad", 366)
+    @zerind = Node.new("Zerind", 374)
+    @sibiu = Node.new("Sibiu", 253)
+    @timisoara = Node.new("Timisoara", 329)
+    @oradea = Node.new("Oradea", 380)
+    @fagaras = Node.new("Fagaras", 176)
+    @lugoj = Node.new("Lugoj", 244)
+    @mehadia = Node.new("Mehadia", 241)
+    @drobeta = Node.new("Drobeta", 242)
+    @craiova = Node.new("Craiova", 160)
+    @rimnicu_vilcea = Node.new("Rimnicu Vilcea", 193)
+    @pitesti = Node.new("Pitesti", 100)
+    @bucharest = Node.new("Bucharest", 0)
     
     @arad.add_edge(@zerind, 75)
     @arad.add_edge(@sibiu, 140)
@@ -53,7 +53,7 @@ describe Graph do
     
     @rimnicu_vilcea.add_edge(@sibiu, 80)
     @rimnicu_vilcea.add_edge(@craiova, 146)
-    @rimnicu_vilcea.add_edge(@pitesti, 100)
+    @rimnicu_vilcea.add_edge(@pitesti, 97)
     
     @pitesti.add_edge(@rimnicu_vilcea, 97)
     @pitesti.add_edge(@craiova, 138)
@@ -99,6 +99,7 @@ describe Graph do
   end
   
   describe "#explore!" do
+    # TODO: This is failing - why? It's finding arad -> sibiu -> fagaras -> bucharest
     it "should find the correct path" do
       @graph.explore!.should be_true
       @graph.succeeded?.should be_true
@@ -111,7 +112,7 @@ describe Graph do
         edge.node.should == node
         index += 1
       end
-      path.collect { |edge| edge.cost }.sum.should == 418
+      path.collect { |edge| edge.cost }.inject(0) { |sum, num| sum += num }.should == 418
     end
   end
 end

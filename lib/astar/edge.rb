@@ -11,8 +11,4 @@ class Edge
     @cost = cost
   end
   
-  def inspect
-    "#<Edge:#{object_id}>"
-  end
-  
 end

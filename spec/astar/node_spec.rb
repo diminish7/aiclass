@@ -2,9 +2,9 @@ require File.join(File.dirname(__FILE__), '../../lib/astar/graph')
 
 describe Node do
   before do
-    @node1 = Node.new(9)
-    @node2 = Node.new(7)
-    @node3 = Node.new(3)
+    @node1 = Node.new("Node1", 9)
+    @node2 = Node.new("Node2", 7)
+    @node3 = Node.new("Node3", 3)
     @node1.add_edge(@node2, 4)
     @node2.add_edge(@node3, 3)
     @node2.path = [@node1.edges.first]

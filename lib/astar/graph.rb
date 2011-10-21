@@ -80,7 +80,7 @@ protected
       # Otherwise, explore its edges
       to_explore.edges.each do |edge|
         new_node = edge.node
-        unless @explored.include?(new_node) || @frontier.include?(new_node)
+        unless @explored.include?(new_node)
           # Set up the path to get here, then add it to the frontier
           new_node.path = to_explore.path + [edge]
           @frontier << new_node

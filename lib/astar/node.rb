@@ -1,11 +1,12 @@
 # A node in a graph or tree
 class Node
-  attr_reader :h, :edges
+  attr_reader :name, :h, :edges
   attr_accessor :path
   
   # h: The heuristic cost (e.g. crow-fly distance to destination)
   # edges: The edges of the graph leaving this node
-  def initialize(h, edges=[])
+  def initialize(name, h, edges=[])
+    @name = name
     @h = h
     @edges = edges
     @path = [] # Path to get here
@@ -26,6 +27,6 @@ class Node
   end
   
   def inspect
-    "#<Node:#{object_id}>"
+    "#<Node:#{object_id} @name=\"#{@name}\" @estimated_cost=\"#{estimated_cost}\">"
   end
 end
